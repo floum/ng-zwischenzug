@@ -1,0 +1,18 @@
+.container {
+  display: grid;
+  grid-template-areas: "metadata board notation";
+  grid-template-columns: "10% 25% 10%";
+}
+
+#metadata {
+  grid-area: "metadata";
+}
+
+#board {
+  grid-area: "board";
+}
+
+#moves {
+  grid-area: "notation";
+}
+
