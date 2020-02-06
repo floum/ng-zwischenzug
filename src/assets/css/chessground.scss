@@ -164,15 +164,15 @@ cg-board piece.fading {
  * Board
  */
 
-$piece-image-path: "~src/assets/images/piece";
-$board-image-path: "~src/assets/images/board";
+$piece-image-path: "~src/assets/img/chessground/piece";
+$board-image-path: "~src/assets/img/chessground/board";
 
 @mixin board-img($name) {
   background-image: url("#{$board-image-path}/#{$name}");
 }
 
-.blue .cg-board-wrap {
-  @include board-img("blue.svg");
+.blue.cg-wrap {
+  background-image: url("#{$board-image-path}/blue.svg");
 }
 
 $piece-files: (

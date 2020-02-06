@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Chessground } from 'chessground';
 
 @Component({
   selector: 'app-chessboard',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chessboard.component.scss']
 })
 export class ChessboardComponent implements OnInit {
+  @ViewChild('board', {static: true}) board: ElementRef;
 
   constructor() { }
 
   ngOnInit() {
+    Chessground(this.board.nativeElement)
   }
 
 }
