@@ -159,3 +159,46 @@ cg-board piece.fading {
 .cg-wrap coords.ranks coord {
   transform: translateY(39%);
 }
+
+/*
+ * Board
+ */
+
+$piece-image-path: "~src/assets/images/piece";
+$board-image-path: "~src/assets/images/board";
+
+@mixin board-img($name) {
+  background-image: url("#{$board-image-path}/#{$name}");
+}
+
+.blue .cg-board-wrap {
+  @include board-img("blue.svg");
+}
+
+$piece-files: (
+'white': (
+'pawn': 'wP',
+'knight': 'wN',
+'bishop': 'wB',
+'rook': 'wR',
+'queen': 'wQ',
+'king': 'wK',
+),
+'black': (
+'pawn': 'bP',
+'knight': 'bN',
+'bishop': 'bB',
+'rook': 'bR',
+'queen': 'bQ',
+'king': 'bK',
+)
+);
+
+$set: 'cburnett';
+@each $color, $pieces in $piece-files {
+  @each $name, $file in $pieces {
+    .#{$set} piece.#{$name}.#{$color} {
+      background-image: url("#{$piece-image-path}/#{$set}/#{$file}.svg");
+    }
+  }
+}
