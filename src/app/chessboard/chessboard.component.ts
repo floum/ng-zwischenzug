@@ -1,22 +1,26 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, ViewEncapsulation } from '@angular/core';
 import { Chessground } from 'chessground';
-const Chess = require('chess.js');
+const Chess = require('chess.js')
 
 @Component({
   selector: 'app-chessboard',
   templateUrl: './chessboard.component.html',
-  styleUrls: ['./chessboard.component.scss']
+  styleUrls: ['./chessboard.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ChessboardComponent implements OnInit {
   @ViewChild('board', {static: true}) board: ElementRef;
 
+  private chessboard: any;
+  private game: any;
+
   constructor() { }
 
   ngOnInit() {
-    this.board = Chessground(this.board.nativeElement)
+    this.chessboard = Chessground(this.board.nativeElement)
     this.game = new Chess()
 
-    this.board.set({
+    this.chessboard.set({
       movable: {
         free: false,
         dests: this.legalMoves(),
