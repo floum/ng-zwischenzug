@@ -19,14 +19,29 @@ export class ChessboardComponent implements OnInit {
   ngOnInit() {
     this.chessboard = Chessground(this.board.nativeElement)
     this.game = new Chess()
+    this.setBoardLegalMoves()
 
+  }
+
+  setBoardLegalMoves = () => {
     this.chessboard.set({
       movable: {
         free: false,
         dests: this.legalMoves(),
-        color: this.game.turn() == 'w' ? 'white': 'black'
+        color: this.game.turn() == 'w' ? 'white': 'black',
+        events: {
+          after: this.boardMove()
+        }
       }
     })
+  }
+
+  boardMove = () => {
+    return (orig, dest)=> {
+      const move = {from: orig, to: dest}
+      this.game.move(move)
+      this.setBoardLegalMoves()
+    }
   }
 
   legalMoves = () => {
