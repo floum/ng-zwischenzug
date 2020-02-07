@@ -1,7 +1,7 @@
 .container {
   display: grid;
   grid-template-areas: "metadata board notation";
-  grid-template-columns: "10% 25% 10%";
+  grid-template-columns: 10% 90vh 10%;
 }
 
 #metadata {
