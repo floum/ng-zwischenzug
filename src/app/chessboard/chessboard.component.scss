@@ -165,8 +165,8 @@ cg-board piece.fading {
  * Board
  */
 
-$piece-image-path: "~src/assets/img/chessground/piece";
-$board-image-path: "~src/assets/img/chessground/board";
+$piece-image-path: "~assets/img/chessground/piece";
+$board-image-path: "~assets/img/chessground/board";
 
 @mixin board-img($name) {
   background-image: url("#{$board-image-path}/#{$name}");

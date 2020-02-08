@@ -5,14 +5,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ChessboardModule } from './chessboard/chessboard.module';
 
+import { PuzzleModule } from './puzzle/puzzle.module';
+import { HeaderComponent } from './header/header.component';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ChessboardModule
+    ChessboardModule,
+    PuzzleModule
   ],
   providers: [],
   bootstrap: [AppComponent]
