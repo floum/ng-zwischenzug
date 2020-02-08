@@ -19,12 +19,21 @@ export class ChessboardComponent implements OnInit {
   ngOnInit() {
     this.chessboard = Chessground(this.board.nativeElement)
     this.game = new Chess()
-    this.setBoardLegalMoves()
+    this.set({})
 
+  }
+
+  set = (config: any) => {
+    if (config.fen) {
+      this.game.load(config.fen)
+    }
+    this.chessboard.set(config)
+    this.setBoardLegalMoves()
   }
 
   setBoardLegalMoves = () => {
     this.chessboard.set({
+      check: this.game.in_check(),
       movable: {
         free: false,
         dests: this.legalMoves(),
@@ -40,7 +49,9 @@ export class ChessboardComponent implements OnInit {
     return (orig, dest)=> {
       const move = {from: orig, to: dest}
       this.game.move(move)
-      this.setBoardLegalMoves()
+      this.set({
+        fen: this.game.fen()
+      })
     }
   }
 
