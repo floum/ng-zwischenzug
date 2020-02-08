@@ -1,0 +1,16 @@
+$mq-short: (min-height 500px);
+$mq-xx-small: (min-width 500px);
+$mq-medium: (min-width 1000px);
+
+$mq-site-header-tall: $mq-short;
+$mq-topnav-visible: $mq-medium;
+
+$site-header-height: 40px;
+$site-header-short-height: 40px;
+$site-header-tall-height: 60px;
+
+$c-font: hsl(0, 0%, 70%);
+$c-primary: hsl(209, 79%, 56%);
+$c-primary-dim: c-dimmer($c-primary);
+$c-font-dim: c-dimmer($c-font, 15%);
+$c-link: c-dimmer($c-primary);
