@@ -10,7 +10,8 @@ import { PuzzleService } from './puzzle.service';
   declarations: [
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    HttpClientModule
   ],
   providers: [
     PuzzleService

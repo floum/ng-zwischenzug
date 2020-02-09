@@ -7,6 +7,7 @@ import { ChessboardModule } from './chessboard/chessboard.module';
 
 import { PuzzleModule } from './puzzle/puzzle.module';
 import { HeaderComponent } from './header/header.component';
+import { AuthenticationModule } from '@app/authentication/authentication.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { HeaderComponent } from './header/header.component';
     BrowserModule,
     AppRoutingModule,
     ChessboardModule,
-    PuzzleModule
+    PuzzleModule,
+    AuthenticationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

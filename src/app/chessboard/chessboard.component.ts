@@ -20,7 +20,6 @@ export class ChessboardComponent implements OnInit {
     this.chessboard = Chessground(this.board.nativeElement)
     this.game = new Chess()
     this.set({})
-
   }
 
   set = (config: any) => {
@@ -63,5 +62,4 @@ export class ChessboardComponent implements OnInit {
     });
     return dests
   }
-
 }

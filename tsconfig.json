@@ -19,9 +19,6 @@
       "dom"
     ]
   },
-  "paths": {
-    "@app/*": ["app/*"]
-  },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true

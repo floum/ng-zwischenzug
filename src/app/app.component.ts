@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { AuthenticationService } from '@app/authentication/authentication.service';
+import { User } from './user.model';
+
 
 @Component({
   selector: 'app-root',
@@ -6,4 +9,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  currentUser: User
+  constructor (
+    private authenticationService: AuthenticationService
+  ) {
+  }
 }
