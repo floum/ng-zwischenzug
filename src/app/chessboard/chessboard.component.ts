@@ -15,11 +15,19 @@ export class ChessboardComponent implements OnInit {
   private chessboard: any;
   private game: any;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
     this.chessboard = Chessground(this.board.nativeElement)
     this.game = new Chess()
+  }
+
+  ngOnChanges() {
+    if (this.chessboard == undefined) {
+      this.chessboard = Chessground(this.board.nativeElement)
+      this.game = new Chess()
+    }
     this.set({
       fen: this.fen
     })

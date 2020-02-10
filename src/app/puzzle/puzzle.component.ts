@@ -9,6 +9,7 @@ import { Puzzle } from '@app/puzzle/puzzle.model';
 })
 export class PuzzleComponent implements OnInit {
   puzzle: any;
+  currentFen: string;
 
   constructor(
     private puzzleService: PuzzleService
@@ -17,6 +18,7 @@ export class PuzzleComponent implements OnInit {
   ngOnInit() {
     this.puzzleService.practice().subscribe(x => {
       this.puzzle = x;
+      this.currentFen = x.challenges[0].fen;
     });
   }
 
