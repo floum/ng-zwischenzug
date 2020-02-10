@@ -5,9 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ChessboardModule } from './chessboard/chessboard.module';
 
+import { UserModule } from '@app/user/user.module';
 import { PuzzleModule } from './puzzle/puzzle.module';
 import { HeaderComponent } from './header/header.component';
-import { AuthenticationModule } from '@app/authentication/authentication.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,7 @@ import { AuthenticationModule } from '@app/authentication/authentication.module'
     AppRoutingModule,
     ChessboardModule,
     PuzzleModule,
-    AuthenticationModule
+    UserModule
   ],
   providers: [],
   bootstrap: [AppComponent]

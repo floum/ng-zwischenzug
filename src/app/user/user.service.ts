@@ -3,13 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { User } from '@app/user.model';
+import { User } from '@app/user/user.model';
 import { environment } from '@environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthenticationService {
+export class UserService {
 
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
@@ -21,6 +21,10 @@ export class AuthenticationService {
 
   public get currentUserValue(): User {
     return this.currentUserSubject.value;
+  }
+
+  register(user: User) {
+    return this.http.post(`${environment.apiUrl}/users`, user);
   }
 
   login(username: string, password: string) {

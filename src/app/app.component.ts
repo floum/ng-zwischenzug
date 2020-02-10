@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { AuthenticationService } from '@app/authentication/authentication.service';
-import { User } from './user.model';
+import { User } from '@app/user/user.model';
+import { UserService } from '@app/user/user.service';
 
 
 @Component({
@@ -11,7 +11,7 @@ import { User } from './user.model';
 export class AppComponent {
   currentUser: User
   constructor (
-    private authenticationService: AuthenticationService
+    private userService: UserService
   ) {
   }
 }
