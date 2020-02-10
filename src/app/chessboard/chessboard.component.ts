@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, ViewEncapsulation, Input } from '@angular/core';
 import { Chessground } from 'chessground';
 const Chess = require('chess.js')
 
@@ -10,6 +10,7 @@ const Chess = require('chess.js')
 })
 export class ChessboardComponent implements OnInit {
   @ViewChild('board', {static: true}) board: ElementRef;
+  @Input() fen: string;
 
   private chessboard: any;
   private game: any;
@@ -19,7 +20,9 @@ export class ChessboardComponent implements OnInit {
   ngOnInit() {
     this.chessboard = Chessground(this.board.nativeElement)
     this.game = new Chess()
-    this.set({})
+    this.set({
+      fen: this.fen
+    })
   }
 
   set = (config: any) => {

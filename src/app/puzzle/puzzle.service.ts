@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Puzzle } from '@app/puzzle/puzzle.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +11,7 @@ export class PuzzleService {
 
   constructor(private http: HttpClient) { }
 
-  getUserPuzzle = (userId: number) => {
-    return this.http.get(`${this.apiURL}/puzzles/${userId}`)
+  practice = (): Observable<any> => {
+    return this.http.get(`${this.apiURL}/practice.json`)
   }
 }
