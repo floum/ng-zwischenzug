@@ -2,7 +2,7 @@
   <div id="metadata">
   </div>
   <div id="board">
-    <app-chessboard [fen]="currentFen"></app-chessboard>
+    <app-chessboard [fen]="currentFen" (change)="fenChange($event)"></app-chessboard>
   </div>
   <div id="moves">
   </div>

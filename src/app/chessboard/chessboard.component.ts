@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, ViewEncapsulation, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, ViewEncapsulation, Input, Output, EventEmitter } from '@angular/core';
 import { Chessground } from 'chessground';
 const Chess = require('chess.js')
 
@@ -11,6 +11,7 @@ const Chess = require('chess.js')
 export class ChessboardComponent implements OnInit {
   @ViewChild('board', {static: true}) board: ElementRef;
   @Input() fen: string;
+  @Output() change: EventEmitter = new EventEmitter();
 
   private chessboard: any;
   private game: any;
@@ -62,6 +63,7 @@ export class ChessboardComponent implements OnInit {
       this.set({
         fen: this.game.fen()
       })
+      this.change.emit(this.game.fen())
     }
   }
 

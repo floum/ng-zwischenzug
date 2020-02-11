@@ -21,5 +21,8 @@ export class PuzzleComponent implements OnInit {
       this.currentFen = x.challenges[0].fen;
     });
   }
-
+  
+  fenChange = (fen) => {
+    this.currentFen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
+  }
 }
