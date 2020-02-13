@@ -1,5 +1,5 @@
 <div class="container">
   <div id="board">
-    <app-chessboard [fen]="currentFen" (change)="fenChange($event)"></app-chessboard>
+    <app-chessboard [fen]="currentFen" [lastMove]="lastMove" (change)="fenChange($event)"></app-chessboard>
   </div>
 </div>

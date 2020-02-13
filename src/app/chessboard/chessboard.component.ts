@@ -11,7 +11,8 @@ const Chess = require('chess.js')
 export class ChessboardComponent implements OnInit {
   @ViewChild('board', {static: true}) board: ElementRef;
   @Input() fen: string;
-  @Output() change: EventEmitter = new EventEmitter();
+  @Input() lastMove: string;
+  @Output() change: EventEmitter<string> = new EventEmitter<string>();
 
   private chessboard: any;
   private game: any;
@@ -30,7 +31,8 @@ export class ChessboardComponent implements OnInit {
       this.game = new Chess()
     }
     this.set({
-      fen: this.fen
+      fen: this.fen,
+      lastMove: this.lastMove
     })
   }
 
