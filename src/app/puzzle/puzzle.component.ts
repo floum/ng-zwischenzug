@@ -41,21 +41,25 @@ export class PuzzleComponent implements OnInit {
     console.log(fen)
     console.log(this.currentChallenge.expected_fens)
     if (!this.currentChallenge.expected_fens.includes(fen)) {
-
+      console.log('FAILURE')
+    } else {
+      console.log('SUCCESS')
     }
-    this.playCurrentChallenge()
+    if (this.currentChallenge.continuation) {
+      this.playContinuation(this.currentChallenge)
+    }
   }
 
   get currentChallenge() {
     return this.puzzle.challenges[this.currentChallengeIndex];
   }
 
-  playCurrentChallenge() {
+  playContinuation(challenge) {
     const numbers = interval(300)
     this.lastMove = undefined
 
-    numbers.pipe(take(this.currentChallenge.continuation.length)).subscribe(i =>
-      this.currentFen = this.currentChallenge.continuation[i]
+    numbers.pipe(take(challenge.continuation.length)).subscribe(i =>
+      this.currentFen = challenge.continuation[i]
     )
   }
 }

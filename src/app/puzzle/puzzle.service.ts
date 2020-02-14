@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Puzzle } from '@app/puzzle/puzzle.model';
+import { environment } from '@environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PuzzleService {
-  apiURL: string = 'http://192.168.1.16:3000';
+  apiURL: string = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 
