@@ -1,1 +1,4 @@
-export class Challenge {}
+export class Challenge {
+  id: number;
+  fen: string;
+}

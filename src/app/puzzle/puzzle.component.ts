@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PuzzleService } from '@app/puzzle/puzzle.service';
-import { UserService } from '@app/user/user.service'
+import { PuzzleAttemptService } from '@app/puzzle/puzzle-attempt.service';
 import { Puzzle } from '@app/puzzle/puzzle.model';
 import { interval } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -21,7 +21,7 @@ export class PuzzleComponent implements OnInit {
 
   constructor(
     private puzzleService: PuzzleService,
-    private userService: UserService
+    private puzzleAttemptService: PuzzleAttemptService
   ) { }
 
 
@@ -29,7 +29,6 @@ export class PuzzleComponent implements OnInit {
     this.currentChallengeIndex = 0
     this.puzzleAttempt = {}
     this.puzzleAttempt.success = true
-    this.puzzleAttempt.userId = this.userService.currentUserValue.id
 
     this.puzzleService.practice().subscribe(x => {
       this.puzzle = x
@@ -67,6 +66,9 @@ export class PuzzleComponent implements OnInit {
       this.currentFen = this.currentChallenge.fen
     } else {
       console.log('PUZZLE Complete')
+      this.puzzleAttemptService.create(this.puzzleAttempt).subscribe(x => {
+        console.log(x)
+      })
     }
   }
 }
