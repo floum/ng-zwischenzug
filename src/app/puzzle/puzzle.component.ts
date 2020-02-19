@@ -15,6 +15,7 @@ export class PuzzleComponent implements OnInit {
   currentFen: string;
   lastMove: string;
   currentChallengeIndex: number = 0;
+  orientation: string;
 
   puzzleAttempt: any;
 
@@ -27,27 +28,24 @@ export class PuzzleComponent implements OnInit {
   ngOnInit() {
     this.currentChallengeIndex = 0
     this.puzzleAttempt = {}
+    this.puzzleAttempt.success = true
     this.puzzleAttempt.userId = this.userService.currentUserValue.id
 
     this.puzzleService.practice().subscribe(x => {
-      console.log(x)
       this.puzzle = x
       this.currentFen = this.currentChallenge.fen
       this.puzzleAttempt.puzzleId = this.puzzle.id
     });
   }
-  
+
   fenChange = (fen) => {
-    console.log(fen)
-    console.log(this.currentChallenge.expected_fens)
     if (!this.currentChallenge.expected_fens.includes(fen)) {
+      this.puzzleAttempt.success = false
       console.log('FAILURE')
     } else {
       console.log('SUCCESS')
     }
-    if (this.currentChallenge.continuation) {
-      this.playContinuation(this.currentChallenge)
-    }
+    this.setupNextChallenge()
   }
 
   get currentChallenge() {
@@ -61,5 +59,14 @@ export class PuzzleComponent implements OnInit {
     numbers.pipe(take(challenge.continuation.length)).subscribe(i =>
       this.currentFen = challenge.continuation[i]
     )
+  }
+
+  setupNextChallenge() {
+    this.currentChallengeIndex += 1
+    if (this.currentChallengeIndex < this.puzzle.challenges.length) {
+      this.currentFen = this.currentChallenge.fen
+    } else {
+      console.log('PUZZLE Complete')
+    }
   }
 }

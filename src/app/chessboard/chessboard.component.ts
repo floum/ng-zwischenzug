@@ -16,13 +16,12 @@ export class ChessboardComponent implements OnInit {
 
   private chessboard: any;
   private game: any;
+  private orientation: string;
 
   constructor() {
   }
 
   ngOnInit() {
-    this.chessboard = Chessground(this.board.nativeElement)
-    this.game = new Chess()
   }
 
   ngOnChanges() {
@@ -31,21 +30,32 @@ export class ChessboardComponent implements OnInit {
       this.game = new Chess()
     }
     this.set({
-      fen: this.fen,
-      lastMove: this.lastMove
+      fen: this.fen
     })
   }
 
   set = (config: any) => {
     if (config.fen) {
       this.game.load(config.fen)
+      this.setOrientation()
     }
     this.chessboard.set(config)
     this.setBoardLegalMoves()
   }
 
-  setBoardLegalMoves = () => {
+  setOrientation() {
+    if (this.orientation == undefined) {
+      console.log('Setting Orientation')
+      this.orientation = this.game.turn() == 'w' ? 'white': 'black'
+      this.chessboard.set({
+        orientation: this.orientation
+      })
+    }
+  }
+
+  setBoardLegalMoves() {
     this.chessboard.set({
+      turnColor: this.game.turn() == 'w' ? 'white': 'black',
       check: this.game.in_check(),
       movable: {
         free: false,
@@ -70,9 +80,9 @@ export class ChessboardComponent implements OnInit {
   }
 
   legalMoves = () => {
-    const dests = {}
+    let dests = {}
     this.game.SQUARES.forEach(s => {
-      const ms = this.game.moves({square: s, verbose: true})
+      let ms = this.game.moves({square: s, verbose: true})
       if (ms.length) dests[s] = ms.map(m => m.to)
     });
     return dests
