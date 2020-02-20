@@ -12,6 +12,7 @@ import { take } from 'rxjs/operators';
 })
 export class PuzzleComponent implements OnInit {
   puzzle: any;
+  complete: boolean;
   currentFen: string;
   lastMove: string;
   currentChallengeIndex: number = 0;
@@ -26,7 +27,9 @@ export class PuzzleComponent implements OnInit {
 
 
   ngOnInit() {
+    this.orientation = undefined;
     this.currentChallengeIndex = 0
+    this.complete = false
     this.puzzleAttempt = {}
     this.puzzleAttempt.success = true
 
@@ -40,9 +43,7 @@ export class PuzzleComponent implements OnInit {
   fenChange = (fen) => {
     if (!this.currentChallenge.expected_fens.includes(fen)) {
       this.puzzleAttempt.success = false
-      console.log('FAILURE')
     } else {
-      console.log('SUCCESS')
     }
     this.setupNextChallenge()
   }
@@ -51,23 +52,13 @@ export class PuzzleComponent implements OnInit {
     return this.puzzle.challenges[this.currentChallengeIndex];
   }
 
-  playContinuation(challenge) {
-    const numbers = interval(300)
-    this.lastMove = undefined
-
-    numbers.pipe(take(challenge.continuation.length)).subscribe(i =>
-      this.currentFen = challenge.continuation[i]
-    )
-  }
-
   setupNextChallenge() {
     this.currentChallengeIndex += 1
     if (this.currentChallengeIndex < this.puzzle.challenges.length) {
       this.currentFen = this.currentChallenge.fen
     } else {
-      console.log('PUZZLE Complete')
       this.puzzleAttemptService.create(this.puzzleAttempt).subscribe(x => {
-        console.log(x)
+        this.complete = true
       })
     }
   }

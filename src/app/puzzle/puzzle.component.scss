@@ -1,7 +1,7 @@
 .container {
   display: grid;
-  grid-template-areas: "board";
-  grid-template-columns: minmax(320px, 60vh);
+  grid-template-areas: "board notation";
+  grid-template-columns: minmax(320px, 80vh) 15%;
 }
 
 #metadata {
