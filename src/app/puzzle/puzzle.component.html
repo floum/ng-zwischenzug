@@ -7,11 +7,14 @@
       <a href="#" (click)="ngOnInit()" class="btn btn-primary">Next</a>
     </div>
     <div id="moves">
-      <ul>
-        <li *ngFor="let challenge of puzzle.challenges">
-          <app-chessboard [fen]="challenge.expected_fens[0]"></app-chessboard>
+      <ol>
+        <li *ngFor="let challenge of puzzle.challenges; let i = index">
+          <ul>
+            <li href="#" (click)="setFen(challenge.fen)">Challenge {{i}}</li>
+            <li (click)="setFen(challenge.expected_fens[0])">Solution</li>
+          </ul>
         </li>
-      </ul>
+      </ol>
     </div>
   </div>
 </div>

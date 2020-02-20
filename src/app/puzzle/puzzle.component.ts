@@ -48,6 +48,10 @@ export class PuzzleComponent implements OnInit {
     this.setupNextChallenge()
   }
 
+  setFen(fen) {
+    this.currentFen = fen
+  }
+
   get currentChallenge() {
     return this.puzzle.challenges[this.currentChallengeIndex];
   }
