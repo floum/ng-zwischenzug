@@ -12,6 +12,6 @@ export class PuzzleAttemptService {
   constructor(private http: HttpClient) { }
 
   create = (puzzleAttempt: any): Observable<any> => {
-    return this.http.post(`${this.apiURL}/puzzle_attempts`, puzzleAttempt)
+    return this.http.post(`${this.apiURL}/user_puzzles`, puzzleAttempt)
   }
 }

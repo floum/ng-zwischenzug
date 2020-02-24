@@ -10,6 +10,7 @@
 - Promotion
 - Puzzles with no expected fen
 - last move on new puzzle
+- orientation on new puzzle
 
 ## Development server
 
