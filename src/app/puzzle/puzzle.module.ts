@@ -6,7 +6,7 @@ import { JwtInterceptor } from '@app/shared/jwt.interceptor';
 import { ChessboardModule} from '@app/chessboard/chessboard.module';
 import { Puzzle } from './puzzle.model';
 import { PuzzleService } from './puzzle.service';
-import { PuzzleAttemptService } from './puzzle-attempt.service';
+import { UserPuzzleService } from '@app/user/user-puzzle.service';
 import { PuzzleComponent } from './puzzle.component';
 
 
@@ -21,7 +21,7 @@ import { PuzzleComponent } from './puzzle.component';
   ],
   providers: [
     PuzzleService,
-    PuzzleAttemptService,
+    UserPuzzleService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
   ],
   exports: [

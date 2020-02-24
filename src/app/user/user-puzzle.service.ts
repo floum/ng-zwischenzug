@@ -6,12 +6,12 @@ import { environment } from '@environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class PuzzleAttemptService {
+export class UserPuzzleService {
   apiURL: string = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 
-  create = (puzzleAttempt: any): Observable<any> => {
-    return this.http.post(`${this.apiURL}/user_puzzles`, puzzleAttempt)
+  create = (userPuzzle: any): Observable<any> => {
+    return this.http.post(`${this.apiURL}/user_puzzles`, userPuzzle)
   }
 }
