@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { ChessboardComponent } from './chessboard.component';
 
 
-
 @NgModule({
   declarations: [ChessboardComponent],
   imports: [
@@ -11,6 +10,5 @@ import { ChessboardComponent } from './chessboard.component';
   ],
   exports: [
     ChessboardComponent
-  ]
 })
 export class ChessboardModule { }

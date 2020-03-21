@@ -15,7 +15,7 @@ export class PuzzleComponent implements OnInit {
   complete: boolean;
   currentFen: string;
   lastMove: string;
-  currentChallengeIndex: number = 0;
+  currentChallengeIndex = 0;
   orientation: string;
 
   puzzleAttempt: any;
@@ -29,28 +29,28 @@ export class PuzzleComponent implements OnInit {
   ngOnInit() {
     this.orientation = undefined;
     this.lastMove = undefined;
-    this.currentChallengeIndex = 0
-    this.complete = false
-    this.puzzleAttempt = {}
-    this.puzzleAttempt.success = true
+    this.currentChallengeIndex = 0;
+    this.complete = false;
+    this.puzzleAttempt = {};
+    this.puzzleAttempt.success = true;
 
     this.puzzleService.practice().subscribe(x => {
-      this.puzzle = x
-      this.currentFen = this.currentChallenge.fen
-      this.puzzleAttempt.puzzleId = this.puzzle.id
+      this.puzzle = x;
+      this.currentFen = this.currentChallenge.fen;
+      this.puzzleAttempt.puzzleId = this.puzzle.id;
     });
   }
 
   fenChange = (fen) => {
     if (!this.currentChallenge.expected_fens.includes(fen)) {
-      this.puzzleAttempt.success = false
+      this.puzzleAttempt.success = false;
     } else {
     }
-    this.setupNextChallenge()
+    this.setupNextChallenge();
   }
 
   setFen(fen) {
-    this.currentFen = fen
+    this.currentFen = fen;
   }
 
   get currentChallenge() {
@@ -58,13 +58,13 @@ export class PuzzleComponent implements OnInit {
   }
 
   setupNextChallenge() {
-    this.currentChallengeIndex += 1
+    this.currentChallengeIndex += 1;
     if (this.currentChallengeIndex < this.puzzle.challenges.length) {
-      this.currentFen = this.currentChallenge.fen
+      this.currentFen = this.currentChallenge.fen;
     } else {
       this.userPuzzleService.create(this.puzzleAttempt).subscribe(x => {
-        this.complete = true
-      })
+        this.complete = true;
+      });
     }
   }
 }

@@ -13,6 +13,6 @@ export class PuzzleService {
   constructor(private http: HttpClient) { }
 
   practice = (): Observable<any> => {
-    return this.http.get(`${this.apiURL}/practice.json`)
+    return this.http.get(`${this.apiURL}/practice.json`);
   }
 }
